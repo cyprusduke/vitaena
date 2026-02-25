@@ -23,6 +23,14 @@ export async function generateMetadata({ params }: Props) {
   return { title: `Упражнение ${id} · ${topic.title} — Vitaena` }
 }
 
+function pluralExercises(n: number): string {
+  const mod10 = n % 10
+  const mod100 = n % 100
+  if (mod10 === 1 && mod100 !== 11) return "упражнение"
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "упражнения"
+  return "упражнений"
+}
+
 const typeLabels: Record<string, string> = {
   "fill-in-the-blank": "Вставить букву",
   "multiple-choice": "Выбор ответа",
@@ -129,7 +137,7 @@ export default async function ExercisePage({ params }: Props) {
             <p className="text-xs font-semibold text-stone-500 uppercase tracking-wider">
               {topic.title}
             </p>
-            <p className="text-xs text-stone-400 mt-0.5">{topic.exercises.length} упражнений</p>
+            <p className="text-xs text-stone-400 mt-0.5">{topic.exercises.length} {pluralExercises(topic.exercises.length)}</p>
           </div>
         </div>
         <div className="flex-1 overflow-y-auto p-2">
