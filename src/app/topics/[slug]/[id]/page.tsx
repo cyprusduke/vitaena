@@ -38,6 +38,8 @@ const typeLabels: Record<string, string> = {
   "reading-comprehension": "Аудирование",
   "true-false": "Правда/Ложь",
   "word-fill": "Вставить слово",
+  "select-fill": "Диалог",
+  "open-questions": "Аудирование",
 }
 
 export default async function ExercisePage({ params }: Props) {

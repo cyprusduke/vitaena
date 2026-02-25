@@ -1,4 +1,4 @@
-export type ExerciseType = "fill-in-the-blank" | "multiple-choice" | "audio" | "reading-comprehension" | "true-false" | "word-fill"
+export type ExerciseType = "fill-in-the-blank" | "multiple-choice" | "audio" | "reading-comprehension" | "true-false" | "word-fill" | "select-fill" | "open-questions"
 
 export interface BaseExercise {
   id: string
@@ -59,7 +59,31 @@ export interface WordFillExercise extends BaseExercise {
   translation?: string
 }
 
-export type Exercise = FillInTheBlankExercise | MultipleChoiceExercise | AudioExercise | ReadingComprehensionExercise | TrueFalseExercise | WordFillExercise
+export interface SelectFillBlank {
+  answer: string
+  options: string[]
+}
+
+export interface SelectFillExercise extends BaseExercise {
+  type: "select-fill"
+  text: string
+  blanks: SelectFillBlank[]
+  translation?: string
+}
+
+export interface OpenQuestion {
+  question: string
+  answer: string
+}
+
+export interface OpenQuestionsExercise extends BaseExercise {
+  type: "open-questions"
+  audioSrc?: string
+  text?: string
+  questions: OpenQuestion[]
+}
+
+export type Exercise = FillInTheBlankExercise | MultipleChoiceExercise | AudioExercise | ReadingComprehensionExercise | TrueFalseExercise | WordFillExercise | SelectFillExercise | OpenQuestionsExercise
 
 export interface Topic {
   slug: string

@@ -11,6 +11,8 @@ const typeLabels: Record<Exercise["type"], string> = {
   "reading-comprehension": "Аудирование",
   "true-false": "Правда/Ложь",
   "word-fill": "Слова",
+  "select-fill": "Диалог",
+  "open-questions": "Аудирование",
 }
 
 type Result = "correct" | "incorrect"

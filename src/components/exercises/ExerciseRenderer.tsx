@@ -5,6 +5,8 @@ import AudioExercise from "./AudioExercise"
 import ReadingComprehension from "./ReadingComprehension"
 import TrueFalse from "./TrueFalse"
 import WordFill from "./WordFill"
+import SelectFill from "./SelectFill"
+import OpenQuestions from "./OpenQuestions"
 
 interface Props {
   exercise: Exercise
@@ -26,5 +28,9 @@ export default function ExerciseRenderer({ exercise, onResult, onReset }: Props)
       return <TrueFalse exercise={exercise} onResult={onResult} onReset={onReset} />
     case "word-fill":
       return <WordFill exercise={exercise} onResult={onResult} onReset={onReset} />
+    case "select-fill":
+      return <SelectFill exercise={exercise} onResult={onResult} onReset={onReset} />
+    case "open-questions":
+      return <OpenQuestions exercise={exercise} />
   }
 }

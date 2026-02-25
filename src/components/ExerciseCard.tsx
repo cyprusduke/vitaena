@@ -8,6 +8,8 @@ const typeLabels: Record<Exercise["type"], string> = {
   "reading-comprehension": "Аудирование",
   "true-false": "Правда/Ложь",
   "word-fill": "Вставить слово",
+  "select-fill": "Диалог",
+  "open-questions": "Аудирование",
 }
 
 const typeBadgeColors: Record<Exercise["type"], string> = {
@@ -17,6 +19,8 @@ const typeBadgeColors: Record<Exercise["type"], string> = {
   "reading-comprehension": "bg-orange-100 text-orange-700",
   "true-false": "bg-teal-100 text-teal-700",
   "word-fill": "bg-rose-100 text-rose-700",
+  "select-fill": "bg-amber-100 text-amber-700",
+  "open-questions": "bg-sky-100 text-sky-700",
 }
 
 interface ExerciseCardProps {
