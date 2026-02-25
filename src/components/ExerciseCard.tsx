@@ -6,6 +6,8 @@ const typeLabels: Record<Exercise["type"], string> = {
   "multiple-choice": "Выбор ответа",
   audio: "На слух",
   "reading-comprehension": "Аудирование",
+  "true-false": "Правда/Ложь",
+  "word-fill": "Вставить слово",
 }
 
 const typeBadgeColors: Record<Exercise["type"], string> = {
@@ -13,6 +15,8 @@ const typeBadgeColors: Record<Exercise["type"], string> = {
   "multiple-choice": "bg-green-100 text-green-700",
   audio: "bg-purple-100 text-purple-700",
   "reading-comprehension": "bg-orange-100 text-orange-700",
+  "true-false": "bg-teal-100 text-teal-700",
+  "word-fill": "bg-rose-100 text-rose-700",
 }
 
 interface ExerciseCardProps {

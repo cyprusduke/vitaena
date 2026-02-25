@@ -9,6 +9,8 @@ const typeLabels: Record<Exercise["type"], string> = {
   "multiple-choice": "Выбор",
   audio: "На слух",
   "reading-comprehension": "Аудирование",
+  "true-false": "Правда/Ложь",
+  "word-fill": "Слова",
 }
 
 type Result = "correct" | "incorrect"
@@ -43,7 +45,17 @@ export default function ExerciseSidebar({ exercises, topicSlug, currentId }: Pro
     return () => window.removeEventListener("vitaena-result-changed", refresh)
   }, [topicSlug, exercises])
 
+  const hasAnyResult = Object.keys(results).length > 0
+
+  const handleResetAll = () => {
+    for (const ex of exercises) {
+      localStorage.removeItem(`vitaena_result_${topicSlug}_${ex.id}`)
+    }
+    window.dispatchEvent(new CustomEvent("vitaena-result-changed"))
+  }
+
   return (
+    <div className="flex flex-col gap-2">
     <nav className="space-y-0.5">
       {exercises.map((exercise, i) => {
         const isActive = exercise.id === currentId
@@ -101,5 +113,21 @@ export default function ExerciseSidebar({ exercises, topicSlug, currentId }: Pro
         )
       })}
     </nav>
+
+    {hasAnyResult && (
+      <div className="px-1">
+        <button
+          onClick={handleResetAll}
+          className="w-full text-xs text-stone-400 hover:text-red-500 transition py-1.5 rounded-lg hover:bg-red-50 flex items-center justify-center gap-1.5"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+          Сбросить все результаты
+        </button>
+      </div>
+    )}
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-export type ExerciseType = "fill-in-the-blank" | "multiple-choice" | "audio" | "reading-comprehension"
+export type ExerciseType = "fill-in-the-blank" | "multiple-choice" | "audio" | "reading-comprehension" | "true-false" | "word-fill"
 
 export interface BaseExercise {
   id: string
@@ -38,7 +38,28 @@ export interface ReadingComprehensionExercise extends BaseExercise {
   questions: ReadingQuestion[]
 }
 
-export type Exercise = FillInTheBlankExercise | MultipleChoiceExercise | AudioExercise | ReadingComprehensionExercise
+export interface TrueFalseStatement {
+  statement: string
+  answer: boolean
+}
+
+export interface TrueFalseExercise extends BaseExercise {
+  type: "true-false"
+  text?: string
+  translation?: string
+  audioSrc?: string
+  statements: TrueFalseStatement[]
+}
+
+export interface WordFillExercise extends BaseExercise {
+  type: "word-fill"
+  text: string
+  answers: string[]
+  words: string[]
+  translation?: string
+}
+
+export type Exercise = FillInTheBlankExercise | MultipleChoiceExercise | AudioExercise | ReadingComprehensionExercise | TrueFalseExercise | WordFillExercise
 
 export interface Topic {
   slug: string

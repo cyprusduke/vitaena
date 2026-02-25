@@ -28,6 +28,8 @@ const typeLabels: Record<string, string> = {
   "multiple-choice": "Выбор ответа",
   audio: "На слух",
   "reading-comprehension": "Аудирование",
+  "true-false": "Правда/Ложь",
+  "word-fill": "Вставить слово",
 }
 
 export default async function ExercisePage({ params }: Props) {

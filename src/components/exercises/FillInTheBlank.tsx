@@ -6,9 +6,10 @@ import type { FillInTheBlankExercise } from "@/lib/types"
 interface Props {
   exercise: FillInTheBlankExercise
   onResult?: (correct: boolean) => void
+  onReset?: () => void
 }
 
-export default function FillInTheBlank({ exercise, onResult }: Props) {
+export default function FillInTheBlank({ exercise, onResult, onReset }: Props) {
   const [inputs, setInputs] = useState<string[]>(exercise.blanks.map(() => ""))
   const [checked, setChecked] = useState(false)
 
@@ -22,6 +23,7 @@ export default function FillInTheBlank({ exercise, onResult }: Props) {
   const handleReset = () => {
     setInputs(exercise.blanks.map(() => ""))
     setChecked(false)
+    onReset?.()
   }
 
   const allCorrect =

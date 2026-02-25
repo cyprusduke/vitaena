@@ -6,9 +6,10 @@ import type { MultipleChoiceExercise } from "@/lib/types"
 interface Props {
   exercise: MultipleChoiceExercise
   onResult?: (correct: boolean) => void
+  onReset?: () => void
 }
 
-export default function MultipleChoice({ exercise, onResult }: Props) {
+export default function MultipleChoice({ exercise, onResult, onReset }: Props) {
   const [selected, setSelected] = useState<string | null>(null)
   const [checked, setChecked] = useState(false)
 
@@ -21,6 +22,7 @@ export default function MultipleChoice({ exercise, onResult }: Props) {
   const handleReset = () => {
     setSelected(null)
     setChecked(false)
+    onReset?.()
   }
 
   const isCorrect = checked && selected === exercise.answer

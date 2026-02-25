@@ -18,5 +18,10 @@ export default function ExerciseWithSave({ exercise, topicSlug, exerciseId }: Pr
     window.dispatchEvent(new CustomEvent("vitaena-result-changed"))
   }
 
-  return <ExerciseRenderer exercise={exercise} onResult={handleResult} />
+  const handleReset = () => {
+    localStorage.removeItem(`vitaena_result_${topicSlug}_${exerciseId}`)
+    window.dispatchEvent(new CustomEvent("vitaena-result-changed"))
+  }
+
+  return <ExerciseRenderer exercise={exercise} onResult={handleResult} onReset={handleReset} />
 }

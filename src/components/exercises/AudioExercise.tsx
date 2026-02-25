@@ -6,9 +6,10 @@ import type { AudioExercise as AudioExerciseType } from "@/lib/types"
 interface Props {
   exercise: AudioExerciseType
   onResult?: (correct: boolean) => void
+  onReset?: () => void
 }
 
-export default function AudioExercise({ exercise, onResult }: Props) {
+export default function AudioExercise({ exercise, onResult, onReset }: Props) {
   const [selected, setSelected] = useState<string | null>(null)
   const [checked, setChecked] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -30,6 +31,7 @@ export default function AudioExercise({ exercise, onResult }: Props) {
   const handleReset = () => {
     setSelected(null)
     setChecked(false)
+    onReset?.()
   }
 
   const isCorrect = checked && selected === exercise.answer
