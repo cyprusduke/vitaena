@@ -77,7 +77,7 @@ export default function ReadingComprehension({ exercise, onResult, onReset }: Pr
               </>
             )}
           </button>
-          <span className="text-xs text-stone-400">Прослушайте текст и ответьте на вопросы</span>
+          <span className="text-xs text-stone-400">Прослушайте аудио и ответьте на вопросы</span>
           <audio ref={audioRef} src={exercise.audioSrc} onEnded={() => setPlaying(false)} />
         </div>
       )}

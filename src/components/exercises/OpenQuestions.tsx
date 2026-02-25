@@ -53,6 +53,8 @@ export default function OpenQuestions({ exercise }: Props) {
               </>
             )}
           </button>
+              <span className="text-xs text-stone-400">Прослушайте аудио и ответьте на вопросы</span>
+
           <audio ref={audioRef} src={exercise.audioSrc} onEnded={() => setPlaying(false)} />
         </div>
       )}

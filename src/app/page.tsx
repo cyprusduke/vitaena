@@ -6,7 +6,7 @@ export default function HomePage() {
     <div className="max-w-4xl mx-auto">
       <div className="mb-10">
         <h1 className="text-3xl font-serif font-bold text-stone-800 mb-2">
-          Изучайте греческий язык
+          Различные темы по греческому языку уровня B1
         </h1>
         <p className="text-stone-500 text-base">
           Выберите тему, чтобы начать упражнения.
