@@ -46,6 +46,7 @@ export interface TrueFalseStatement {
 export interface TrueFalseExercise extends BaseExercise {
   type: "true-false"
   text?: string
+  showText?: boolean
   translation?: string
   audioSrc?: string
   statements: TrueFalseStatement[]

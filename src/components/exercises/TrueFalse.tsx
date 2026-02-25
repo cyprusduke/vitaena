@@ -84,9 +84,17 @@ export default function TrueFalse({ exercise, onResult, onReset }: Props) {
 
       {/* Текст */}
       {exercise.text && (
-        <Collapsible label="Текст">
-          <p className="font-serif text-stone-800 leading-relaxed text-base">{exercise.text}</p>
-        </Collapsible>
+        exercise.showText ? (
+          <div className="space-y-3">
+            {exercise.text.split("\n\n").map((para, i) => (
+              <p key={i} className="font-serif text-stone-800 leading-relaxed text-base">{para}</p>
+            ))}
+          </div>
+        ) : (
+          <Collapsible label="Текст">
+            <p className="font-serif text-stone-800 leading-relaxed text-base">{exercise.text}</p>
+          </Collapsible>
+        )
       )}
 
       {/* Перевод */}
