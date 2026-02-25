@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300">
+  <defs>
+    <linearGradient id="wave1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1b67c6"/>
+      <stop offset="50%"  stop-color="#45b8e8"/>
+      <stop offset="100%" stop-color="#1b67c6"/>
+    </linearGradient>
+    <linearGradient id="wave2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1b3890"/>
+      <stop offset="50%"  stop-color="#1a69c4"/>
+      <stop offset="100%" stop-color="#1b3890"/>
+    </linearGradient>
+    <clipPath id="flag-clip">
+      <path d="M263 10 C285 8 315 12 348 10 L348 58 C315 60 285 56 263 58 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Flag pole -->
+  <rect x="260" y="10" width="3.5" height="88" rx="1.75" fill="#1b3890"/>
+
+  <!-- Flag (waving shape) -->
+  <path d="M263 10 C285 8 315 12 348 10 L348 58 C315 60 285 56 263 58 Z" fill="#1b67c6"/>
+
+  <!-- Stripes + canton clipped to flag shape -->
+  <g clip-path="url(#flag-clip)">
+    <!-- White stripes -->
+    <rect x="263" y="16.4" width="90" height="5.3" fill="white"/>
+    <rect x="263" y="27"   width="90" height="5.3" fill="white"/>
+    <rect x="263" y="37.6" width="90" height="5.3" fill="white"/>
+    <rect x="263" y="48.2" width="90" height="5.3" fill="white"/>
+    <!-- Canton -->
+    <rect x="263" y="10" width="36" height="26.7" fill="#1b67c6"/>
+    <!-- Cross horizontal -->
+    <rect x="263" y="21" width="36" height="5.6" fill="white"/>
+    <!-- Cross vertical -->
+    <rect x="278" y="10" width="5.6" height="26.7" fill="white"/>
+  </g>
+
+  <!-- "vitaena" text -->
+  <text
+    x="280"
+    y="182"
+    font-family="Georgia, 'Book Antiqua', 'Palatino Linotype', serif"
+    font-style="italic"
+    font-weight="bold"
+    font-size="102"
+    fill="#1b3890"
+    text-anchor="middle"
+    letter-spacing="-2"
+  >vitaena</text>
+
+  <!-- Wave 1 — cyan accent -->
+  <path
+    d="M 58 204 C 110 190 165 212 220 204 C 275 196 330 214 385 204 C 420 197 455 208 495 204"
+    fill="none" stroke="url(#wave1)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Wave 2 — medium blue -->
+  <path
+    d="M 38 224 C 110 206 195 230 280 224 C 365 218 435 238 510 224"
+    fill="none" stroke="#1a69c4" stroke-width="5.5" stroke-linecap="round"/>
+
+  <!-- Wave 3 — dark navy (main) -->
+  <path
+    d="M 22 248 C 115 228 210 254 305 248 C 400 242 465 262 525 248"
+    fill="none" stroke="url(#wave2)" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Wave 4 — dark navy (lower) -->
+  <path
+    d="M 55 270 C 150 254 245 274 340 270 C 410 267 460 278 495 272"
+    fill="none" stroke="#1b3890" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+</svg>

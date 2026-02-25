@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(head:*)",
+      "Bash(ls:*)",
+      "Bash(cd /c/Users/sp08/Documents/dev/vitaena/vitaena && npm run build 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\sp08\\\\Documents\\\\dev\\\\vitaena\\\\vitaena\" && npm run build 2>&1)",
+      "Bash(cp:*)"
+    ]
+  }
+}

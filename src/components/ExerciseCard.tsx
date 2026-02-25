@@ -1,0 +1,41 @@
+import Link from "next/link"
+import type { Exercise } from "@/lib/types"
+
+const typeLabels: Record<Exercise["type"], string> = {
+  "fill-in-the-blank": "Вставить букву",
+  "multiple-choice": "Выбор ответа",
+  audio: "На слух",
+  "reading-comprehension": "Аудирование",
+}
+
+const typeBadgeColors: Record<Exercise["type"], string> = {
+  "fill-in-the-blank": "bg-blue-100 text-blue-700",
+  "multiple-choice": "bg-green-100 text-green-700",
+  audio: "bg-purple-100 text-purple-700",
+  "reading-comprehension": "bg-orange-100 text-orange-700",
+}
+
+interface ExerciseCardProps {
+  exercise: Exercise
+  topicSlug: string
+  index: number
+}
+
+export default function ExerciseCard({ exercise, topicSlug, index }: ExerciseCardProps) {
+  return (
+    <Link
+      href={`/topics/${topicSlug}/${exercise.id}`}
+      className="flex items-start gap-4 rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:shadow-md hover:border-amber-400"
+    >
+      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-stone-100 text-stone-500 text-sm font-semibold flex items-center justify-center">
+        {index + 1}
+      </span>
+      <div className="flex-1 min-w-0">
+        <p className="text-stone-800 text-sm leading-snug line-clamp-2">{exercise.question}</p>
+      </div>
+      <span className={`flex-shrink-0 text-xs font-medium px-2 py-1 rounded-full ${typeBadgeColors[exercise.type]}`}>
+        {typeLabels[exercise.type]}
+      </span>
+    </Link>
+  )
+}
