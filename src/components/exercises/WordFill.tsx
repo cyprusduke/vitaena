@@ -174,7 +174,9 @@ export default function WordFill({ exercise, onResult, onReset }: Props) {
     ? exercise.answers.filter((ans, i) => slots[i] === ans).length
     : 0
 
-  const paragraphs = exercise.text.split("\n\n").map(parseParagraph)
+  const sections = exercise.text.split("\n\n").map((section) =>
+    section.split("\n").map(parseParagraph)
+  )
 
   return (
     <div className="space-y-6">
@@ -191,10 +193,12 @@ export default function WordFill({ exercise, onResult, onReset }: Props) {
 
       {/* Текст с пропусками */}
       <div className="space-y-4">
-        {paragraphs.map((segments, pi) => (
-          <p key={pi} className="font-serif text-stone-800 leading-relaxed text-base">
-            {segments.map((seg, si) => {
-              if (seg.type === "text") return <span key={si}>{seg.content}</span>
+        {sections.map((lines, si) => (
+          <div key={si}>
+            {lines.map((segments, li) => (
+          <p key={li} className="font-serif text-stone-800 leading-relaxed text-base">
+            {segments.map((seg, segi) => {
+              if (seg.type === "text") return <span key={segi}>{seg.content}</span>
 
               const idx = seg.index
               const filled = slots[idx]
@@ -224,7 +228,7 @@ export default function WordFill({ exercise, onResult, onReset }: Props) {
 
               return (
                 <span
-                  key={si}
+                  key={segi}
                   draggable={!checked && !!filled}
                   onDragStart={(e) => handleSlotDragStart(e, idx)}
                   onDragEnd={handleDragEnd}
@@ -239,15 +243,17 @@ export default function WordFill({ exercise, onResult, onReset }: Props) {
               )
             })}
           </p>
+            ))}
+          </div>
         ))}
       </div>
 
-      {/* Банк слов */}
+      {/* Банк слов — мобильные (скрыт на xl+) */}
       <div
         onDragOver={!checked ? handleBankDragOver : undefined}
         onDragLeave={!checked ? handleBankDragLeave : undefined}
         onDrop={!checked ? handleBankDrop : undefined}
-        className={`rounded-xl p-3 transition-all ${
+        className={`xl:hidden rounded-xl p-3 transition-all ${
           dragOverBank
             ? "border-2 border-dashed border-amber-400 bg-amber-50"
             : "border-2 border-transparent"
@@ -266,9 +272,7 @@ export default function WordFill({ exercise, onResult, onReset }: Props) {
                 onDragEnd={handleDragEnd}
                 onClick={() => handleWordClick(word)}
                 className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition select-none ${
-                  used
-                    ? "border-stone-100 bg-stone-50 text-stone-300 cursor-default"
-                    : checked
+                  used || checked
                     ? "border-stone-100 bg-stone-50 text-stone-300 cursor-default"
                     : isBeingDragged
                     ? "border-amber-300 bg-amber-50 text-amber-600 opacity-50 cursor-grab"
@@ -281,6 +285,49 @@ export default function WordFill({ exercise, onResult, onReset }: Props) {
           })}
         </div>
       </div>
+
+      {/* Правый сайдбар — банк слов (xl+) */}
+      <aside className="hidden xl:flex flex-col fixed right-0 top-0 bottom-0 w-[360px] border-l border-stone-200 bg-white z-30">
+        <div
+          className="flex-shrink-0 flex items-center px-4 border-b border-stone-200"
+          style={{ height: "var(--header-height, 65px)" }}
+        >
+          <p className="text-xs font-semibold text-stone-500 uppercase tracking-wider">Слова</p>
+        </div>
+        <div
+          onDragOver={!checked ? handleBankDragOver : undefined}
+          onDragLeave={!checked ? handleBankDragLeave : undefined}
+          onDrop={!checked ? handleBankDrop : undefined}
+          className={`flex-1 overflow-y-auto p-3 transition-all ${
+            dragOverBank ? "bg-amber-50" : ""
+          }`}
+        >
+          <div className="flex flex-wrap gap-2">
+            {shuffledWords.map((word) => {
+              const used = usedWords.has(word)
+              const isBeingDragged = draggingWord === word && draggingFromSlot === null
+              return (
+                <span
+                  key={word}
+                  draggable={!used && !checked}
+                  onDragStart={(e) => !used && !checked && handleBankDragStart(e, word)}
+                  onDragEnd={handleDragEnd}
+                  onClick={() => handleWordClick(word)}
+                  className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition select-none ${
+                    used || checked
+                      ? "border-stone-100 bg-stone-50 text-stone-300 cursor-default"
+                      : isBeingDragged
+                      ? "border-amber-300 bg-amber-50 text-amber-600 opacity-50 cursor-grab"
+                      : "border-stone-200 bg-white text-stone-700 hover:border-amber-300 hover:bg-amber-50 hover:text-amber-800 cursor-grab"
+                  }`}
+                >
+                  {word}
+                </span>
+              )
+            })}
+          </div>
+        </div>
+      </aside>
 
       {/* Результат */}
       {checked && (

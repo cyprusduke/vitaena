@@ -2,8 +2,8 @@ import type { Topic } from "@/lib/types"
 
 export const travelTopic: Topic = {
   slug: "travel",
-  title: "Путешествие",
-  description: "Лексика и фразы для путешествий по Греции.",
+  title: "Ταξίδι",
+  description: "Λεξιλόγιο και φράσεις για ταξίδια στην Ελλάδα.",
   exercises: [
     {
       id: "1",
