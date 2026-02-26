@@ -1,4 +1,4 @@
-export type ExerciseType = "fill-in-the-blank" | "multiple-choice" | "audio" | "reading-comprehension" | "true-false" | "word-fill" | "select-fill" | "open-questions"
+export type ExerciseType = "fill-in-the-blank" | "multiple-choice" | "audio" | "reading-comprehension" | "true-false" | "word-fill" | "select-fill" | "grammar-fill" | "table-choice" | "open-questions"
 
 export interface BaseExercise {
   id: string
@@ -72,6 +72,32 @@ export interface SelectFillExercise extends BaseExercise {
   translation?: string
 }
 
+export interface TableChoiceCell {
+  options: string[]
+  answer: string
+}
+
+export interface TableChoiceRow {
+  question: string
+  cells: TableChoiceCell[]
+}
+
+export interface TableChoiceExercise extends BaseExercise {
+  type: "table-choice"
+  audioSrc?: string
+  text?: string
+  translation?: string
+  columnHeaders: string[]
+  rows: TableChoiceRow[]
+}
+
+export interface GrammarFillExercise extends BaseExercise {
+  type: "grammar-fill"
+  text: string
+  blanks: SelectFillBlank[]
+  translation?: string
+}
+
 export interface OpenQuestion {
   question: string
   answer: string
@@ -84,7 +110,7 @@ export interface OpenQuestionsExercise extends BaseExercise {
   questions: OpenQuestion[]
 }
 
-export type Exercise = FillInTheBlankExercise | MultipleChoiceExercise | AudioExercise | ReadingComprehensionExercise | TrueFalseExercise | WordFillExercise | SelectFillExercise | OpenQuestionsExercise
+export type Exercise = FillInTheBlankExercise | MultipleChoiceExercise | AudioExercise | ReadingComprehensionExercise | TrueFalseExercise | WordFillExercise | SelectFillExercise | GrammarFillExercise | TableChoiceExercise | OpenQuestionsExercise
 
 export interface Topic {
   slug: string

@@ -8,7 +8,8 @@
       "Bash(cp:*)",
       "Bash(powershell:*)",
       "Bash(powershell.exe:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(python:*)"
     ]
   }
 }

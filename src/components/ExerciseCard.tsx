@@ -9,6 +9,8 @@ const typeLabels: Record<Exercise["type"], string> = {
   "true-false": "Правда/Ложь",
   "word-fill": "Вставить слово",
   "select-fill": "Диалог",
+  "grammar-fill": "Грамматика",
+  "table-choice": "Таблица",
   "open-questions": "Аудирование",
 }
 
@@ -20,6 +22,8 @@ const typeBadgeColors: Record<Exercise["type"], string> = {
   "true-false": "bg-teal-100 text-teal-700",
   "word-fill": "bg-rose-100 text-rose-700",
   "select-fill": "bg-amber-100 text-amber-700",
+  "grammar-fill": "bg-indigo-100 text-indigo-700",
+  "table-choice": "bg-violet-100 text-violet-700",
   "open-questions": "bg-sky-100 text-sky-700",
 }
 

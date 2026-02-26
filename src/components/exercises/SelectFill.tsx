@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import type { SelectFillExercise } from "@/lib/types"
+import type { SelectFillExercise, GrammarFillExercise } from "@/lib/types"
 import Collapsible from "./Collapsible"
 
 interface Props {
-  exercise: SelectFillExercise
+  exercise: SelectFillExercise | GrammarFillExercise
   onResult?: (correct: boolean) => void
   onReset?: () => void
 }

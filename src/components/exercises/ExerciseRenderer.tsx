@@ -6,6 +6,7 @@ import ReadingComprehension from "./ReadingComprehension"
 import TrueFalse from "./TrueFalse"
 import WordFill from "./WordFill"
 import SelectFill from "./SelectFill"
+import TableChoice from "./TableChoice"
 import OpenQuestions from "./OpenQuestions"
 
 interface Props {
@@ -29,7 +30,10 @@ export default function ExerciseRenderer({ exercise, onResult, onReset }: Props)
     case "word-fill":
       return <WordFill exercise={exercise} onResult={onResult} onReset={onReset} />
     case "select-fill":
+    case "grammar-fill":
       return <SelectFill exercise={exercise} onResult={onResult} onReset={onReset} />
+    case "table-choice":
+      return <TableChoice exercise={exercise} onResult={onResult} onReset={onReset} />
     case "open-questions":
       return <OpenQuestions exercise={exercise} />
   }
